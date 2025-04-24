@@ -12,8 +12,10 @@
     <div class="input-container">
       <input type="text" id="taskInput" placeholder="digite uma tarefa...">
       <button onclick="addTask()">Adicionar</button>
+      <button onclick="toggleDeletedTasks()">Mostrar Excluidos</button>
     </div>
     <ul id="taskList"></ul>
+    <ul id="deletedTasks" style="display: none;"></ul>
   </div>
   <script src="script.js" defer></script>
 </body>

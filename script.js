@@ -1,5 +1,27 @@
 console.log("JavaScript carregado com sucesso!");
 
+let deletedItems = [];
+
+function updateDeletedTasks(){
+    const deletedList = document.getElementById('deletedTasks');
+    deletedList.innerHTML = '';
+
+    deletedItems.forEach(item =>{
+        const li = document.createElement('li');
+        li.textContent = item;
+        deletedList.appendChild(li);
+    });
+}
+
+function toggleDeletedTasks(){
+    const deletedList = document.getElementById('deletedTasks');
+    if(deletedList.style.display === 'none' || deletedList.style.display === ''){
+        updateDeletedTasks()
+        deletedList.style.display = 'block';
+    }else{
+        deletedList.style.display = 'none';
+    }
+}
 
 function addTask(){
     const taskInput = document.getElementById('taskInput');
@@ -26,6 +48,8 @@ function addTask(){
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'excluir';
     deleteBtn.onclick = () =>{
+        deletedItems.push(taskText);
+        updateDeletedTasks();
         taskList.removeChild(li);
     };
 
