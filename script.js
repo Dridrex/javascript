@@ -2,54 +2,52 @@ console.log("JavaScript carregado com sucesso!");
 
 let deletedItems = [];
 
-function updateDeletedTasks(){
-    const deletedList = document.getElementById('deletedTasks');
-    deletedList.innerHTML = '';
+function updateRemovedTasks() {
+    const removedList = document.getElementById('removedTasks');
+    removedList.innerHTML = '';
 
-    deletedItems.forEach(item =>{
+    deletedItems.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
-        deletedList.appendChild(li);
+        removedList.appendChild(li);
     });
 }
 
-function toggleDeletedTasks(){
-    const deletedList = document.getElementById('deletedTasks');
-    if(deletedList.style.display === 'none' || deletedList.style.display === ''){
-        updateDeletedTasks()
-        deletedList.style.display = 'block';
-    }else{
-        deletedList.style.display = 'none';
-    }
+function showRemovedTasks() {
+    updateRemovedTasks();
+    document.getElementById('removedTasksContainer').style.display = 'block';
 }
 
-function addTask(){
+function hideRemovedTasks() {
+    document.getElementById('removedTasksContainer').style.display = 'none';
+}
+
+function addTask() {
     const taskInput = document.getElementById('taskInput');
     const taskText = taskInput.value.trim();
 
-    if(taskText ===''){
-        alert('Por favor,digite uma nova tarefa.');
+    if (taskText === '') {
+        alert('Por favor, digite uma nova tarefa.');
         return;
     }
-    const taskList = document.getElementById('taskList');
 
+    const taskList = document.getElementById('taskList');
     const li = document.createElement('li');
     li.textContent = taskText;
 
-    const  actions = document.createElement('div');
+    const actions = document.createElement('div');
     actions.className = 'actions';
 
     const completeBtn = document.createElement('button');
-    completeBtn.textContent = 'concluir';
-    completeBtn.onclick = () =>{
+    completeBtn.textContent = 'Concluir';
+    completeBtn.onclick = () => {
         li.classList.toggle('completed');
     };
-    
+
     const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'excluir';
-    deleteBtn.onclick = () =>{
+    deleteBtn.textContent = 'Excluir';
+    deleteBtn.onclick = () => {
         deletedItems.push(taskText);
-        updateDeletedTasks();
         taskList.removeChild(li);
     };
 
@@ -58,5 +56,5 @@ function addTask(){
     li.appendChild(actions);
 
     taskList.appendChild(li);
-    taskInput.value='';
+    taskInput.value = '';
 }

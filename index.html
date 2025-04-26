@@ -8,15 +8,35 @@
 </head>
 <body>
   <div class="container">
-    <h1>Lista de tarefas</h1>
-    <div class="input-container">
-      <input type="text" id="taskInput" placeholder="digite uma tarefa...">
-      <button onclick="addTask()">Adicionar</button>
-      <button onclick="toggleDeletedTasks()">Mostrar Excluidos</button>
-    </div>
-    <ul id="taskList"></ul>
-    <ul id="deletedTasks" style="display: none;"></ul>
+    <header>
+      <h1>Lista de Tarefas</h1>
+    </header>
+    
+    <main>
+      <section class="input-container">
+        <input 
+          type="text" 
+          id="taskInput" 
+          placeholder="Digite uma tarefa..." 
+          aria-label="Campo para digitar uma nova tarefa">
+        
+        <button onclick="addTask()" aria-label="Adicionar tarefa">Adicionar</button>
+        <button onclick="showRemovedTasks()" aria-label="Mostrar tarefas removidas">Mostrar Removidas</button>
+      </section>
+      
+      <section>
+        <ul id="taskList" aria-label="Lista de tarefas"></ul>
+
+        <!-- Área das tarefas removidas com botão de sair -->
+        <div id="removedTasksContainer" style="display: none;">
+          <h2>Tarefas Removidas</h2>
+          <ul id="removedTasks" aria-label="Lista de tarefas removidas"></ul>
+          <button onclick="hideRemovedTasks()">Fechar</button>
+        </div>
+      </section>
+    </main>
   </div>
+  
   <script src="script.js" defer></script>
 </body>
 </html>
